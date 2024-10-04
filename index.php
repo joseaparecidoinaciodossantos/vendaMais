@@ -11,19 +11,19 @@
 <body>
     
     <div class="painel">
-        <form>
+        <form action="acesso.php" method="post">
             <h3>login</h3>
             
             <div class="form-group">
               <i class="fa-solid fa-user"></i>
               <label >cpf</label>
-              <input type="text" class="form-control" placeholder="Seu cpf">
+              <input name="cpf" type="text" class="form-control" placeholder="Seu cpf">
             </div>
              
             <div class="form-group">
               <i class="fa-solid fa-key"></i>
               <label>senha</label>
-              <input type="password" class="form-control"> 
+              <input name="senha" type="password" class="form-control" placeholder="senha"> 
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
             <button type="reset" class="btn btn-danger">limpar</button>

@@ -1,22 +1,6 @@
 <?php 
 include "validacao.php";
 include "conexao.php";
-//destino do formulario para inserir por padrão
-$destino = './usuario/inserir.php';
-//se idALT for diferente de vazio - se existir idALT
-if(!empty($_GET['idALT'])){
-  //guarda na váriavel $id o valor da pessoa clicado no lápis da tabela 
-  $id = $_GET['idALT'];
-
-  $sql = "SELECT * FROM usuario WHERE id='$id' ";
-//variável com nossos dados:
-  $dados= mysqli_query(  $conexao, $sql);
-  //váriavel com nossos dados:
-
-  $dadosALT = mysqli_fetch_assoc( $dados);
-  
-  $destino = './usuario/alterar.php';
-}
 
 ?>
 <!DOCTYPE html>
@@ -99,9 +83,9 @@ if(!empty($_GET['idALT'])){
 
 
                             <?php
-                            //sql para selecionar todos os usuarios
+                            //sql para selecionar todos os vendas
 
-                              $sql = " SELECT* FROM usuario";
+                              $sql = " SELECT* FROM venda";
                               $resultado = mysqli_query(  $conexao,  $sql);
 
                               //looping onde $coluna, vai representar os dados do banco
@@ -117,7 +101,7 @@ if(!empty($_GET['idALT'])){
                                 <td> <?php echo $coluna['cpf'] ?> </td>
                                 <td> 
                                   <a href="principal.php?idALT=<?= $coluna['id'] ?>"><i class="fa-solid fa-pen-to-square mr-3"></i></a>
-                                  <a href="<?php echo './usuario/excluir.php?id=' .$coluna['id'] ?> "><i class="fa-solid fa-trash-can"></i></a>
+                                  <a href="<?php echo './venda/excluir.php?id=' .$coluna['id'] ?> "><i class="fa-solid fa-trash-can"></i></a>
                                 </td>
                               </tr>
 

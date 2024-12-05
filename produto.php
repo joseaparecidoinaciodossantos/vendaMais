@@ -2,20 +2,20 @@
 include "validacao.php";
 include "conexao.php";
 //destino do formulario para inserir por padrão
-$destino = './cidade/inserir.php';
+$destino = './produto/inserir.php';
 //se idALT for diferente de vazio - se existir idALT
 if(!empty($_GET['idALT'])){
   //guarda na váriavel $id o valor da pessoa clicado no lápis da tabela 
   $id = $_GET['idALT'];
 
-  $sql = "SELECT * FROM cidade.php WHERE id='$id' ";
+  $sql = "SELECT * FROM produto.php WHERE id='$id' ";
 //variável com nossos dados:
   $dados= mysqli_query(  $conexao, $sql);
   //váriavel com nossos dados:
 
   $dadosALT = mysqli_fetch_assoc( $dados);
   
-  $destino = './cidade/alterar.php';
+  $destino = './produto/alterar.php';
 }
 
 ?>
@@ -57,26 +57,39 @@ if(!empty($_GET['idALT'])){
                         <form action="<?=$destino?> " method="post"> 
                         <div class="form-group">
                               <label > Id </label>
-                              <input value="<?php echo isset($dadosALT) ? $dadosALT['id'] : '' ?>" type="" name="id" readonly class="form-control"placeholder="seu id">
+                              <input value="<?php echo isset($dadosALT) ? $dadosALT['id'] : '' ?>" type="text" name="id" readonly class="form-control"placeholder="seu id">
                               
                             </div>
 
                             <div class="form-group">
                               <label >nome</label>
-                              <input value="<?php echo isset($dadosALT) ? $dadosALT['nome'] : '' ?>" type="" name="nome" class="form-control"placeholder="seu nome" required>
+                              <input value="<?php echo isset($dadosALT) ? $dadosALT['nome'] : '' ?>" type="text" name="nome" class="form-control"placeholder="seu nome" required>
                               
                             </div>
                              
                              
                             <div class="form-group">
-                              <label >cep</label>
-                              <input value="<?php echo isset($dadosALT) ? $dadosALT['cep'] : '' ?>" type="" name="cep" class="form-control cpf" placeholder="Seu cep" required>
+                              <label >preco</label>
+                              <input value="<?php echo isset($dadosALT) ? $dadosALT['preco'] : '' ?>" type="number" name="preco" class="form-control cpf" placeholder="preco" required>
                             </div>
 
                             <div class="form-group">
-                              <label >senha</label>
-                              <input value="<?php echo isset($dadosALT) ? $dadosALT['estado']: '' ?>" type="password" name="estado" class="form-control" placeholder="estado" required>
+                              <label >estoque</label>
+                              <input value="<?php echo isset($dadosALT) ? $dadosALT['estoque']: '' ?>" type="number" name="estoque" class="form-control" placeholder="estoque" required>
                             </div>
+                            <div class="form-group">
+                              <label >custo</label>
+                              <input value="<?php echo isset($dadosALT) ? $dadosALT['custo']: '' ?>" type="number" name="estoque" class="form-control" placeholder="custo" required>
+                            </div>
+                            <div class="form-group">
+                              <label >lucro</label>
+                              <input value="<?php echo isset($dadosALT) ? $dadosALT['lucro']: '' ?>" type="number" name="estoque" class="form-control" placeholder="lucro" required>
+                            </div>
+                            <div class="form-group">
+                              <label >margem</label>
+                              <input value="<?php echo isset($dadosALT) ? $dadosALT['margem']: '' ?>" type="number" name="estoque" class="form-control" placeholder="margem" required>
+                            </div>
+
 
                             <button type="submit" class="btn btn-primary">Enviar</button>
                             <button type="reset" class="btn btn-danger">limpar</button>
@@ -91,8 +104,8 @@ if(!empty($_GET['idALT'])){
                               <tr>
                                 <th scope="col">id</th>
                                 <th scope="col">nome</th>
-                                <th scope="col">cep</th>
-                                <th scope="col">estado</th>
+                                <th scope="col">preco</th>
+                                <th scope="col">estoque</th>
                                 <th scope="col">opções</th>
                               </tr>
                             </thead>
@@ -102,7 +115,7 @@ if(!empty($_GET['idALT'])){
                             <?php
                             //sql para selecionar todos os usuarios
 
-                              $sql = " SELECT* FROM cidade";
+                              $sql = " SELECT* FROM produto";
                               $resultado = mysqli_query(  $conexao,  $sql);
 
                               //looping onde $coluna, vai representar os dados do banco
@@ -115,8 +128,8 @@ if(!empty($_GET['idALT'])){
                               <tr>
                                 <th><?php echo $coluna['id'] ?> </th>
                                 <td> <?php echo $coluna['nome'] ?> </td>
-                                <td> <?php echo $coluna['cep'] ?> </td>
-                                <td> <?php echo $coluna['estado'] ?> </td>
+                                <td> <?php echo $coluna['preco'] ?> </td>
+                                <td> <?php echo $coluna['estoque'] ?> </td>
                                 <td> 
                                   <a href="principal.php?idALT=<?= $coluna['id'] ?>"><i class="fa-solid fa-pen-to-square mr-3"></i></a>
                                   <a href="<?php echo './usuario/excluir.php?id=' .$coluna['id'] ?> "><i class="fa-solid fa-trash-can"></i></a>
